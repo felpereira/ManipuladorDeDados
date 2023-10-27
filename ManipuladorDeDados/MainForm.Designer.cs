@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             rtbArquivos = new RichTextBox();
             openFileDialog = new OpenFileDialog();
             btnCarregar = new Button();
@@ -35,6 +36,8 @@
             rtbFiltrar = new RichTextBox();
             richTextBox1 = new RichTextBox();
             label1 = new Label();
+            pictureBox1 = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // rtbArquivos
@@ -61,11 +64,11 @@
             // 
             // btnFiltar
             // 
-            btnFiltar.Location = new Point(658, 127);
+            btnFiltar.Location = new Point(658, 114);
             btnFiltar.Name = "btnFiltar";
-            btnFiltar.Size = new Size(130, 23);
+            btnFiltar.Size = new Size(93, 23);
             btnFiltar.TabIndex = 5;
-            btnFiltar.Text = "Filtrar Arquivos";
+            btnFiltar.Text = "Remover";
             btnFiltar.UseVisualStyleBackColor = true;
             btnFiltar.Click += btnFiltar_Click;
             // 
@@ -94,11 +97,25 @@
             label1.TabIndex = 7;
             label1.Text = "Logs de Processamento";
             // 
+            // pictureBox1
+            // 
+            pictureBox1.Cursor = Cursors.Hand;
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.InitialImage = (Image)resources.GetObject("pictureBox1.InitialImage");
+            pictureBox1.Location = new Point(757, 114);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(31, 23);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox1.TabIndex = 8;
+            pictureBox1.TabStop = false;
+            pictureBox1.Click += pictureBox1_Click;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 334);
+            Controls.Add(pictureBox1);
             Controls.Add(label1);
             Controls.Add(richTextBox1);
             Controls.Add(btnFiltar);
@@ -107,6 +124,7 @@
             Controls.Add(rtbArquivos);
             Name = "MainForm";
             Text = "Form1";
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -120,5 +138,6 @@
         private RichTextBox rtbFiltrar;
         private RichTextBox richTextBox1;
         private Label label1;
+        private PictureBox pictureBox1;
     }
 }

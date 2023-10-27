@@ -1,4 +1,5 @@
 using System;
+using System.Text.RegularExpressions;
 
 namespace ManipuladorDeDados
 {
@@ -43,6 +44,8 @@ namespace ManipuladorDeDados
 
         private void btnFiltar_Click(object sender, EventArgs e)
         {
+            var total = 0;
+
             if (string.IsNullOrEmpty(rtbArquivos.Text))
             {
                 MessageBox.Show("Selecione Arquivos");
@@ -64,7 +67,7 @@ namespace ManipuladorDeDados
                 var diretorio = Path.GetDirectoryName(item);
                 var nomeArquivo = Path.GetFileName(item);
 
-                using var sw = new StreamWriter(diretorio + "\\filtrado" + nomeArquivo);
+                using var sw = new StreamWriter(diretorio + "\\filtrado1" + nomeArquivo);
                 using var file = new StreamReader(item);
                 string? line;
 
@@ -76,10 +79,17 @@ namespace ManipuladorDeDados
                     {
                         if (line.Contains(filtros))
                         {
-                            shouldContinue = true;
                             break;
                         }
+
+                        shouldContinue = true;
                     }
+
+                    //var valor = line.Substring(11, 10);
+
+                    //var valorFinal = ApenasNumeros(valor);
+
+                    //total += Convert.ToInt32(valorFinal);
 
                     if (shouldContinue)
                     {
@@ -88,8 +98,22 @@ namespace ManipuladorDeDados
 
                     sw.WriteLine(line);
                 }
+
+                sw.WriteLine("TOTAL: " + total);
             }
 
+            string ApenasNumeros(string str)
+            {
+                var apenasDigitos = new Regex(@"[^\d]");
+                return apenasDigitos.Replace(str, "");
+            }
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            var informacoes = new Informacoes();
+            informacoes.ShowDialog();
         }
     }
 }
